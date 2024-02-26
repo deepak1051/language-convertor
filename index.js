@@ -18,6 +18,7 @@ app.post('/api', async (req, res) => {
 
     res.send(data);
   } catch (error) {
+    console.log(error);
     return res.status(500).json('Something went wrong.');
   }
 });

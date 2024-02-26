@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 const languageList = [
   { id: 1, value: 'en', Text: 'English' },
   { id: 2, value: 'fr', Text: 'French' },
-  { id: 3, value: 'hi', Text: 'Hindi' },
+  // { id: 3, value: 'hi', Text: 'Hindi' },
 ];
 
 function App() {
@@ -14,13 +14,12 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get('/api');
-      console.log(data);
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     await axios.get('/api');
+  //   };
+  //   fetchData();
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
