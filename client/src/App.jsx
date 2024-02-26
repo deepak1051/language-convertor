@@ -28,7 +28,7 @@ function App() {
     setResult('');
 
     try {
-      const { data } = await axios.post('/api', { text });
+      const { data } = await axios.post('/api/convert', { text });
       setResult(data);
 
       setLoading(false);
