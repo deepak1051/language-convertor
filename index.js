@@ -7,13 +7,17 @@ const app = express();
 app.use(express.json());
 
 app.post('/api', async (req, res) => {
-  const { text } = req.body;
+  const { text, type } = req.body;
   if (!text) return res.status(400).json('Please provide a text to convert.');
   const { text: data } = await translate(text, {
-    to: 'en',
+    to: type,
   });
 
   res.send(data);
+});
+
+app.get('/api', (req, res) => {
+  res.send('its working');
 });
 
 if (process.env.NODE_ENV === 'production') {
