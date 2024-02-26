@@ -8,12 +8,18 @@ app.use(express.json());
 
 app.post('/api', async (req, res) => {
   const { text, type } = req.body;
-  if (!text) return res.status(400).json('Please provide a text to convert.');
-  const { text: data } = await translate(text, {
-    to: type,
-  });
+  if (!text || !type)
+    return res.status(400).json('Please provide a text to convert.');
 
-  res.send(data);
+  try {
+    const { text: data } = await translate(text, {
+      to: type,
+    });
+
+    res.send(data);
+  } catch (error) {
+    return res.status(500).json('Something went wrong.');
+  }
 });
 
 app.get('/api', (req, res) => {
