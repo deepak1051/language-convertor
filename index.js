@@ -18,6 +18,16 @@ app.post('/api', async (req, res) => {
     res.send(data);
   } catch (error) {
     console.log(error);
+
+    if (e.name === 'TooManyRequestsError') {
+      // retry with another proxy agent
+      const agent = new HttpProxyAgent('http://103.152.112.162:80');
+      const { text } = await translate('Привет, мир!', {
+        to: 'en',
+        fetchOptions: { agent },
+      });
+    }
+
     return res.status(500).json('Something went wrong.');
   }
 });
