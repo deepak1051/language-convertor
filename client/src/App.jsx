@@ -4,7 +4,7 @@ import axios from 'axios';
 const languageList = [
   { id: 1, value: 'en', Text: 'English' },
   { id: 2, value: 'fr', Text: 'French' },
-  { id: 3, value: '	hi', Text: 'Hindi' },
+  { id: 3, value: 'hi', Text: 'Hindi' },
 ];
 
 function App() {
