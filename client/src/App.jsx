@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const languageList = [
-  { id: 1, value: 'en', Text: 'English' },
-  { id: 2, value: 'fr', Text: 'French' },
-  // { id: 3, value: 'hi', Text: 'Hindi' },
-];
+// const languageList = [
+//   { id: 1, value: 'en', Text: 'English' },
+//   { id: 2, value: 'fr', Text: 'French' },
+//   { id: 3, value: 'hi', Text: 'Hindi' },
+// ];
 
 function App() {
-  const [type, setType] = useState('en');
+  // const [type, setType] = useState('en');
   const [text, setText] = useState('');
   const [result, setResult] = useState('');
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,7 @@ function App() {
     setResult('');
 
     try {
-      const { data } = await axios.post('/api', { text, type });
+      const { data } = await axios.post('/api', { text });
       setResult(data);
 
       setLoading(false);
@@ -54,7 +54,7 @@ function App() {
           />
         </div>
         <div className=" flex my-2 justify-end items-center gap-4">
-          <select
+          {/* <select
             className="rounded border font-semibold  border-gray-800 outline-none  cursor-pointer h-12"
             onChange={(e) => setType(e.target.value)}
           >
@@ -63,12 +63,12 @@ function App() {
                 {l.Text}
               </option>
             ))}
-          </select>
+          </select> */}
           <button
             disabled={loading}
             className=" bg-blue-500 p-2 text-white font-bold text-lg rounded my-2"
           >
-            {loading ? 'Converting...' : 'Convert'}
+            {loading ? 'Translating... to French' : 'Translate to French'}
           </button>
         </div>
       </form>

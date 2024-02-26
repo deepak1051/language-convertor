@@ -7,13 +7,12 @@ const app = express();
 app.use(express.json());
 
 app.post('/api', async (req, res) => {
-  const { text, type } = req.body;
-  if (!text || !type)
-    return res.status(400).json('Please provide a text to convert.');
+  const { text } = req.body;
+  if (!text) return res.status(400).json('Please provide a text to convert.');
 
   try {
     const { text: data } = await translate(text, {
-      to: type,
+      to: 'fr',
     });
 
     res.send(data);
