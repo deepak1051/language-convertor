@@ -1,5 +1,6 @@
 import express from 'express';
 import { translate } from '@vitalets/google-translate-api';
+import { HttpProxyAgent } from 'http-proxy-agent';
 import path from 'path';
 
 const app = express();
@@ -22,10 +23,12 @@ app.post('/api', async (req, res) => {
     if (e.name === 'TooManyRequestsError') {
       // retry with another proxy agent
       const agent = new HttpProxyAgent('http://103.152.112.162:80');
-      const { text } = await translate('Привет, мир!', {
+      const { text: data } = await translate(text, {
         to: 'en',
         fetchOptions: { agent },
       });
+
+      return res.send(data);
     }
 
     return res.status(500).json('Something went wrong.');
